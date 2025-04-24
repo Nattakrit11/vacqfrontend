@@ -12,9 +12,11 @@ function Register() {
     password: '',
     password2: '',
     role: 'user',
+    telephone: '', // add telephone
   });
 
-  const { name, email, password, password2, role } = formData;
+  const { name, email, password, password2, role, telephone } = formData; // add telephone
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ function Register() {
     if (password !== password2) {
       toast.error('Passwords do not match');
     } else {
-      const userData = { name, email, password, role };
+      const userData = { name, email, password, role, telephone }; // add telephone
       dispatch(register(userData));
     }
   };
@@ -85,6 +87,20 @@ function Register() {
               value={email}
               onChange={onChange}
               placeholder="Enter Your email"
+              required
+            />
+          </div>
+
+          {/* add telephone number */}
+          <div className="form-group">
+            <input
+              type="tel"
+              className="form-control"
+              id="telephone"
+              name="telephone"
+              value={telephone}
+              onChange={onChange}
+              placeholder="Enter Your phone number"
               required
             />
           </div>
